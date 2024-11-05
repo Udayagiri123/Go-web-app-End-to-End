@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gowebapp
+spec:
+  selector:
+    matchLabels:
+      app: gowebapp
+  template:
+    metadata:
+      labels:
+        app: gowebapp
+    spec:
+      containers:
+      - name: gowebapp
+        image: udayagiri/go-web-app:v1
+        ports:
+        - containerPort: 8080
