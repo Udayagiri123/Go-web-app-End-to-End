@@ -2,10 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: gowebapp
+  namespace: default  # Change this to the appropriate namespace if necessary
 spec:
+  type: NodePort  # Specifies that the service should be a NodePort service
   selector:
-    app: gowebapp
+    app: gowebapp  # This should match the labels of the pods you want to expose
   ports:
-  - port: 80
-    targetPort: 8080
-    type: ClusterIP
+    - port: 80               # The port that the service will expose to other services inside the cluster
+      targetPort: 8080       # The port on the container where the application is running
+      nodePort: 30007        # The port on the node that will be exposed (must be between 30000 and 32767)
